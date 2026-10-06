@@ -1,0 +1,36 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: orders-platform
+  description: Shared tiny Orders domain
+spec:
+  owner: team-orders
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: orders-service
+  description: Creates and tracks orders
+  annotations:
+    github.com/project-slug: example/orders-service
+  tags: [java, spring]
+spec:
+  type: service
+  lifecycle: production
+  owner: team-orders
+  system: orders-platform
+  providesApis: [orders-api]
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: orders-api
+spec:
+  type: openapi
+  lifecycle: production
+  owner: team-orders
+  system: orders-platform
+  definition: |
+    openapi: 3.0.3
+    info: {title: Orders, version: "1"}
+    paths: {}

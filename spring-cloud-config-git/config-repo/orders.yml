@@ -1,0 +1,3 @@
+orders:
+  currency: EUR
+  max-items: 10
